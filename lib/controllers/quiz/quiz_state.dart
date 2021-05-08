@@ -20,6 +20,14 @@ class QuizState extends Equatable {
     @required this.status,
   });
 
+  factory QuizState.initial() {
+    return QuizState(
+        selectedAnswer: '',
+        correct: [],
+        incorrect: [],
+        status: QuizStatus.initial);
+  }
+
   @override
   List<Object> get props => [
         selectedAnswer,
