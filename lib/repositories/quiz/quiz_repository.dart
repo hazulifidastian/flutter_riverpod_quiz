@@ -20,10 +20,11 @@ class QuizRepository extends BaseQuizRepository {
   QuizRepository(this._read);
 
   @override
-  Future<List<Question>> getQuestions(
-      {@required int numQuestions,
-      @required int categoryId,
-      @required Difficulty difficulty}) async {
+  Future<List<Question>> getQuestions({
+    @required int numQuestions,
+    @required int categoryId,
+    @required Difficulty difficulty,
+  }) async {
     try {
       final queryParameters = {
         'type': 'multiple',
@@ -46,6 +47,7 @@ class QuizRepository extends BaseQuizRepository {
           return results.map((e) => Question.formMap(e)).toList();
         }
       }
+      return [];
     } on DioError catch (err) {
       print(err);
       throw Failure(message: err.response?.statusMessage);
